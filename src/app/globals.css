@@ -16,6 +16,36 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
+:root {
+  --bg-color: #09090b;
+  --text-color: #f4f4f5;
+}
+
+/* Invert the theme for light mode by redefining Tailwind's zinc variables and custom colors */
+:root.light {
+  --bg-color: #f4f4f5;
+  --text-color: #09090b;
+  --color-space-black: #ffffff;
+
+  /* Invert Zinc Palette */
+  --color-zinc-50: #09090b;
+  --color-zinc-100: #18181b;
+  --color-zinc-200: #27272a;
+  --color-zinc-300: #3f3f46;
+  --color-zinc-400: #52525b;
+  --color-zinc-500: #71717a;
+  --color-zinc-600: #a1a1aa;
+  --color-zinc-700: #d4d4d8;
+  --color-zinc-800: #e4e4e7;
+  --color-zinc-900: #f4f4f5;
+  --color-zinc-950: #fafafa;
+
+  /* Make "white" text dark in light mode */
+  --color-white: #09090b;
+  /* Make "black" backgrounds light in light mode */
+  --color-black: #ffffff;
+}
+
 @layer utilities {
   .glass {
     @apply bg-black/40 backdrop-blur-2xl border border-white/[0.06];
@@ -29,8 +59,11 @@
 }
 
 body {
-  @apply bg-space-black text-zinc-100 font-sans antialiased selection:bg-white/10;
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  @apply font-sans antialiased selection:bg-white/10;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 ::-webkit-scrollbar {

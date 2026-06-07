@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Orbit, ArrowRight, Github, Mail, Lock, User } from 'lucide-react';
 
 export function LandingView({ onLogin }: { onLogin: () => void }) {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
 
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-zinc-950 selection:bg-accent-cyan/30">

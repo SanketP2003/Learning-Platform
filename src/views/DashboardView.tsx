@@ -1,13 +1,11 @@
-"use client";
-
-import { motion, type Variants } from 'framer-motion';
+import type { Variants } from 'framer-motion';
+import ClientMotion from '@/components/ClientMotion';
 import { HeroTile } from '@/components/HeroTile';
 import { AnalyticsCharts } from '@/components/AnalyticsCharts';
 import { DailyGoalsTile } from '@/components/DailyGoalsTile';
 import { ActivityHeatmap } from '@/components/ActivityHeatmapTile';
 import { AchievementsTile } from '@/components/AchievementsTile';
 import { AIAssistantTile } from '@/components/AIAssistantTile';
-import CourseCardsGrid from '@/components/CourseCardsGrid';
 
 const container: Variants = {
   hidden: { opacity: 0 },
@@ -25,9 +23,9 @@ const tileItem: Variants = {
   }
 };
 
-export function DashboardView() {
+export function DashboardView({ coursesGrid }: { coursesGrid?: React.ReactNode }) {
   return (
-    <motion.div 
+    <ClientMotion
       variants={container}
       initial="hidden"
       animate="show"
@@ -35,31 +33,31 @@ export function DashboardView() {
       className="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-12 auto-rows-min pb-6"
     >
         
-        <motion.div variants={tileItem} className="md:col-span-12 lg:col-span-8 flex flex-col h-full">
-            <HeroTile />
-        </motion.div>
-        <motion.div variants={tileItem} className="md:col-span-12 lg:col-span-4 flex flex-col h-full"> 
-            <DailyGoalsTile />
-        </motion.div>
+        <ClientMotion variants={tileItem} className="md:col-span-12 lg:col-span-8 flex flex-col h-full">
+          <HeroTile />
+        </ClientMotion>
+        <ClientMotion variants={tileItem} className="md:col-span-12 lg:col-span-4 flex flex-col h-full"> 
+          <DailyGoalsTile />
+        </ClientMotion>
         
         
-        <motion.div variants={tileItem} className="md:col-span-12 lg:col-span-8 flex flex-col h-full">
-            <CourseCardsGrid />
-        </motion.div>
+        <ClientMotion variants={tileItem} className="md:col-span-12 lg:col-span-8 flex flex-col h-full">
+          {coursesGrid || <div className="text-zinc-500">Loading courses...</div>}
+        </ClientMotion>
         
-        <motion.div variants={tileItem} className="md:col-span-12 lg:col-span-4 flex flex-col gap-4 md:gap-6">
-            <ActivityHeatmap />
-            <AnalyticsCharts />
-        </motion.div>
+        <ClientMotion variants={tileItem} className="md:col-span-12 lg:col-span-4 flex flex-col gap-4 md:gap-6">
+          <ActivityHeatmap />
+          <AnalyticsCharts />
+        </ClientMotion>
         
         
-        <motion.div variants={tileItem} className="md:col-span-12 lg:col-span-5 flex flex-col h-full">
+        <ClientMotion variants={tileItem} className="md:col-span-12 lg:col-span-5 flex flex-col h-full">
           <AchievementsTile />
-        </motion.div>
+        </ClientMotion>
         
-        <motion.div variants={tileItem} className="md:col-span-12 lg:col-span-7 flex flex-col h-full">
+        <ClientMotion variants={tileItem} className="md:col-span-12 lg:col-span-7 flex flex-col h-full">
           <AIAssistantTile />
-        </motion.div>
-    </motion.div>
+        </ClientMotion>
+    </ClientMotion>
   );
 }

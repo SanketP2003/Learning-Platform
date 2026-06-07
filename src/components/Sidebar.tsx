@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   LayoutDashboard, BookOpen, Compass, Trophy, 
-  BarChart2, Users, Settings, User
+  BarChart2, Users, Settings, User, Orbit
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -53,8 +53,8 @@ export function Sidebar({ activeItem, setActiveItem }: { activeItem: string, set
       onMouseLeave={() => window.innerWidth < 1024 ? setIsExpanded(false) : null}
     >
       <div className="px-6 mb-8 flex items-center gap-3">
-        <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm shrink-0">
-          N
+        <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white shrink-0 shadow-[0_0_15px_rgba(37,99,235,0.5)]">
+          <Orbit className="w-5 h-5 text-white" />
         </div>
         <AnimatePresence>
           {isExpanded && (

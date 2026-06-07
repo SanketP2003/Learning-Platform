@@ -2,5 +2,5 @@
   "name": "Next-Gen Learning Dashboard",
   "description": "Premium educational SaaS dashboard with 3D glassmorphism and advanced analytics.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": []
 }

@@ -4,7 +4,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import * as Icons from 'lucide-react';
 import { Tooltip } from '@/components/Tooltip';
-import type { Course } from '@/types';
+type CourseItem = {
+  id: string;
+  title: string;
+  progress: number;
+  iconName?: string;
+  estimatedCompletion?: string | null;
+  nextLesson?: string | null;
+};
 
 export function CourseSkeletonCard() {
   return (
@@ -31,7 +38,7 @@ export function CourseSkeletonCard() {
   );
 }
 
-export default function CourseCardsGridClient({ courses }: { courses: Course[] }) {
+export default function CourseCardsGridClient({ courses }: { courses: CourseItem[] }) {
   if (!courses || courses.length === 0) {
     return <div className="text-zinc-500 text-sm py-4">No courses available.</div>;
   }
