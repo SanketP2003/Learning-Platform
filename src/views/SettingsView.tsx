@@ -2,9 +2,8 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Settings, User, Bell, Shield, Paintbrush, Moon, Sun, Monitor, Lock, CreditCard, LogOut } from 'lucide-react';
+import { Settings, User, Bell, Shield, Lock, CreditCard, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useTheme } from '@/contexts/ThemeContext';
 
 export function SettingsView() {
   const [activeTab, setActiveTab] = useState('Profile');
@@ -14,13 +13,11 @@ export function SettingsView() {
     sms: false,
     marketing: true
   });
-  const { theme, setTheme } = useTheme();
 
   const tabs = [
     { id: 'Profile', icon: User },
     { id: 'Notifications', icon: Bell },
     { id: 'Privacy', icon: Shield },
-    { id: 'Appearance', icon: Paintbrush },
     { id: 'Account', icon: Lock }
   ];
 
@@ -237,64 +234,6 @@ export function SettingsView() {
                       <button className="flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 transition-colors">
                         Download My Data
                       </button>
-                    </div>
-                  </div>
-                </section>
-              </motion.div>
-            )}
-
-            {activeTab === 'Appearance' && (
-              <motion.div
-                key="Appearance"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.2 }}
-                className="space-y-6"
-              >
-                <section className="glass-card p-6 bg-zinc-900/50 border border-white/5 rounded-xl">
-                  <div className="flex items-center gap-3 mb-6 border-b border-white/5 pb-4">
-                    <Paintbrush className="w-5 h-5 text-blue-500" />
-                    <h2 className="text-lg font-medium text-zinc-200">Appearance</h2>
-                  </div>
-
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-sm font-medium text-zinc-300 mb-4">Theme Preference</h3>
-                      <div className="grid grid-cols-3 gap-4">
-                        {[
-                          { id: 'light', icon: Sun, label: 'Light' },
-                          { id: 'dark', icon: Moon, label: 'Dark' },
-                          { id: 'system', icon: Monitor, label: 'System' }
-                        ].map((t) => (
-                          <button
-                            key={t.id}
-                            onClick={() => setTheme(t.id as 'light' | 'dark' | 'system')}
-                            className={cn(
-                              "flex flex-col items-center gap-2 p-4 rounded-xl border transition-all",
-                              theme === t.id
-                                ? "bg-blue-500/10 border-blue-500/50 text-blue-500"
-                                : "bg-zinc-950 border-white/10 text-zinc-400 hover:bg-zinc-900 hover:text-zinc-300"
-                            )}
-                          >
-                            <t.icon className="w-6 h-6" />
-                            <span className="text-xs font-medium">{t.label}</span>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="pt-4 border-t border-white/5">
-                      <h3 className="text-sm font-medium text-zinc-300 mb-3">Reduced Motion</h3>
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <p className="text-sm text-zinc-200">Disable animations</p>
-                          <p className="text-xs text-zinc-400 mt-1">Minimize UI animations for a simpler experience.</p>
-                        </div>
-                        <button className="relative inline-flex h-5 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full bg-zinc-700 transition-colors duration-200 ease-in-out">
-                          <span className="-translate-x-2 pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out" />
-                        </button>
-                      </div>
                     </div>
                   </div>
                 </section>
